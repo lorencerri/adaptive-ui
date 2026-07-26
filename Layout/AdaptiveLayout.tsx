@@ -13,7 +13,7 @@ export const AdaptiveLayout = ({ children, dots }: AdaptiveLayoutProps) => {
   const { ref, width, height } = useElementSize();
 
   return (
-    <div ref={ref}>
+    <div ref={ref} id="main-content" tabIndex={-1}>
       {dots && (
         <DotsBackground
           width={width}
