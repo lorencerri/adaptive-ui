@@ -4,7 +4,7 @@
   font-weight: 800;
   font-size: 30px;
   letter-spacing: -1px;
-  color: mantine-var(--mantine-color-dark-0);
+  color: var(--mantine-color-dark-0);
   margin-bottom: var(--mantine-spacing-sm);
 
   @media (max-width: $mantine-breakpoint-sm) {
