@@ -9,7 +9,7 @@ import {
   Transition,
   Title,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 
 interface CustomHeaderProps {
   logo: JSX.Element | string;
@@ -18,6 +18,8 @@ interface CustomHeaderProps {
 
 export const Header = ({ logo, links }: CustomHeaderProps) => {
   const [opened, { toggle }] = useDisclosure(false);
+  const [{ y: scrollY }] = useWindowScroll();
+  const scrolled = scrollY > 40;
 
   const items =
     links &&
@@ -35,7 +37,10 @@ export const Header = ({ logo, links }: CustomHeaderProps) => {
 
   return (
     <AppShell header={{ height: 60 }} className={classes.wrapper}>
-      <AppShell.Header className={classes.header}>
+      <AppShell.Header
+        className={classes.header}
+        data-scrolled={scrolled || undefined}
+      >
         <Container className={classes.container}>
           <Title order={2}>{logo}</Title>
           <Group className={classes.links}>{items}</Group>
