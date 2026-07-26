@@ -17,7 +17,14 @@ export const Footer = ({ logo, links }: FooterProps) => {
         <Group className={classes.links}>
           {links.map((link, index) => {
             return (
-              <Anchor key={index} c="dimmed" className={classes.link}>
+              <Anchor
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                c="dimmed"
+                className={classes.link}
+              >
                 {link.label}
               </Anchor>
             );

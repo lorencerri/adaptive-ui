@@ -36,11 +36,16 @@
   border-radius: var(--mantine-radius-sm);
   text-decoration: none;
   font-size: var(--mantine-font-size-sm);
-  color: var(--mantine-color-dark);
+  color: var(--mantine-color-dark-0);
   font-weight: 500;
 
   &:hover {
     background-color: var(--mantine-color-dark-6);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mantine-primary-color-filled);
+    outline-offset: 2px;
   }
 
   @media (max-width: $mantine-breakpoint-sm) {
