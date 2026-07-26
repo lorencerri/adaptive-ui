@@ -4,10 +4,26 @@
   align-items: center;
   padding: 16px 16px;
   margin-top: 120px;
-  border-top: 1px solid var(--mantine-color-dark-5);
   z-index: 1;
   position: relative;
   background-color: var(--mantine-color-body);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--mantine-color-dark-4) 20%,
+      rgba(59, 91, 219, 0.6) 50%,
+      var(--mantine-color-dark-4) 80%,
+      transparent
+    );
+  }
 
   @media (max-width: $mantine-breakpoint-sm) {
     flex-direction: column;
