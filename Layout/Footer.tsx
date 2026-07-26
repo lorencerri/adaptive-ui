@@ -1,7 +1,9 @@
 import classes from "./Footer.module.css";
-import { Anchor, Group, Title } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { Anchor, Group, Modal, Title, Button } from "@mantine/core";
 import type { ReactNode } from "react";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+import DoomGUI from "../DOOM/DoomGUI";
 
 interface FooterProps {
   logo: ReactNode;
@@ -10,6 +12,7 @@ interface FooterProps {
 
 export const Footer = ({ logo, links }: FooterProps) => {
   const { ref, revealed } = useRevealOnScroll();
+  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <Group
@@ -19,7 +22,17 @@ export const Footer = ({ logo, links }: FooterProps) => {
       }`}
     >
       <Title order={2} className={classes.title}>
-        {logo}
+        <Modal
+          size="xl"
+          opened={opened}
+          onClose={close}
+          title="Is this an easter egg?"
+        >
+          <DoomGUI />
+        </Modal>
+        <Button variant="light" color="red" radius="md" onClick={open}>
+          Don't Click Me
+        </Button>
       </Title>
       {links && (
         <Group className={classes.links}>
