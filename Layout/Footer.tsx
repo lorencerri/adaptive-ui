@@ -1,6 +1,7 @@
 import classes from "./Footer.module.css";
 import { Anchor, Group, Title } from "@mantine/core";
 import type { ReactNode } from "react";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 interface FooterProps {
   logo: ReactNode;
@@ -8,8 +9,15 @@ interface FooterProps {
 }
 
 export const Footer = ({ logo, links }: FooterProps) => {
+  const { ref, revealed } = useRevealOnScroll();
+
   return (
-    <Group className={classes.footer}>
+    <Group
+      ref={ref}
+      className={`${classes.footer} ${classes.reveal} ${
+        revealed ? classes.revealed : ""
+      }`}
+    >
       <Title order={2} className={classes.title}>
         {logo}
       </Title>

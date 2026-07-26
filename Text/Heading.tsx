@@ -1,6 +1,7 @@
 import classes from "./Heading.module.css";
 
 import { Title } from "@mantine/core";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 
 interface HeadingProps {
   text: string;
@@ -8,8 +9,16 @@ interface HeadingProps {
 }
 
 export const Heading = ({ text, highlight }: HeadingProps) => {
+  const { ref, revealed } = useRevealOnScroll();
+
   return (
-    <Title order={3} className={classes.title}>
+    <Title
+      ref={ref}
+      order={3}
+      className={`${classes.title} ${classes.reveal} ${
+        revealed ? classes.revealed : ""
+      }`}
+    >
       {highlight
         ? text.split(" ").map((word, index) =>
             word.toLowerCase() === highlight.toLowerCase() ? (
