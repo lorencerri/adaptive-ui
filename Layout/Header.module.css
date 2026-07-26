@@ -5,8 +5,16 @@
 .header {
   border-bottom: none;
   margin-bottom: 120px;
+  transition: box-shadow 200ms ease, background-color 200ms ease;
+
   @media (max-width: $mantine-breakpoint-sm) {
     margin-bottom: 10px;
+  }
+
+  &[data-scrolled] {
+    background-color: rgba(26, 27, 30, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -36,11 +44,16 @@
   border-radius: var(--mantine-radius-sm);
   text-decoration: none;
   font-size: var(--mantine-font-size-sm);
-  color: var(--mantine-color-dark);
+  color: var(--mantine-color-dark-0);
   font-weight: 500;
 
   &:hover {
     background-color: var(--mantine-color-dark-6);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mantine-primary-color-filled);
+    outline-offset: 2px;
   }
 
   @media (max-width: $mantine-breakpoint-sm) {

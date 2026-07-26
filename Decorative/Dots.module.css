@@ -1,8 +1,13 @@
 .dots {
   position: absolute;
   color: var(--mantine-color-dark-5);
-  @media (max-width: $mantine-breakpoint-xl) {
+  transform: translateY(calc(var(--scroll-y, 0) * 0.05px));
+  @media (max-width: $mantine-breakpoint-sm) {
     display: none;
   }
   transition: all 150ms ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+  }
 }

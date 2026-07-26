@@ -2,6 +2,7 @@ import classes from "./Footer.module.css";
 import { useDisclosure } from "@mantine/hooks";
 import { Anchor, Group, Modal, Title, Button } from "@mantine/core";
 import type { ReactNode } from "react";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import DoomGUI from "../DOOM/DoomGUI";
 
 interface FooterProps {
@@ -10,10 +11,16 @@ interface FooterProps {
 }
 
 export const Footer = ({ logo, links }: FooterProps) => {
+  const { ref, revealed } = useRevealOnScroll();
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <Group className={classes.footer}>
+    <Group
+      ref={ref}
+      className={`${classes.footer} ${classes.reveal} ${
+        revealed ? classes.revealed : ""
+      }`}
+    >
       <Title order={2} className={classes.title}>
         <Modal
           size="xl"
@@ -31,7 +38,14 @@ export const Footer = ({ logo, links }: FooterProps) => {
         <Group className={classes.links}>
           {links.map((link, index) => {
             return (
-              <Anchor key={index} c="dimmed" className={classes.link}>
+              <Anchor
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                c="dimmed"
+                className={classes.link}
+              >
                 {link.label}
               </Anchor>
             );
